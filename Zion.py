@@ -18,7 +18,7 @@ def speak(text):
     engine.runAndWait()
 
 def greet():
-    speak("Welcome back sir. JARVIS is now online.")
+    speak("Welcome back sir. LUMOS is now online.")
 
 def record(duration=5, fs=16000):
     speak("Ready")
