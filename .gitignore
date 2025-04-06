@@ -1,0 +1,15 @@
+# Ignore virtual environments
+jarvis-env/
+
+# Ignore temporary files
+*.wav
+*.tmp
+__pycache__/
+*.pyc
+
+# Ignore model downloads 
+models/
+
+# Ignore tests and personal data
+test.py
+libs.txt
