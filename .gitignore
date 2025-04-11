@@ -12,4 +12,4 @@ models/
 
 # Ignore tests and personal data
 test.py
-libs.txt
+notes.txt

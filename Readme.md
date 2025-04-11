@@ -1,6 +1,6 @@
-# Lumos - Your Personal Voice Assistant
+# Zion - Your Personal Voice Assistant
 
-**Lumos** is a Jarvis-inspired, AI-powered voice assistant built to help you with daily tasks through speech recognition and speech synthesis. It integrates powerful machine learning models for speech-to-text transcription and offers voice-based interactions with various commands.
+**Zion** is a Jarvis-inspired, AI-powered voice assistant built to help you with daily tasks through speech recognition and speech synthesis. It integrates powerful machine learning models for speech-to-text transcription and offers voice-based interactions with various commands.
 
 ## Current Capabilities
 
@@ -47,25 +47,25 @@ This project is licensed under the **Non-Commercial Use License**, which means i
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/lumos.git
+git clone https://github.com/Krishna1694/AI-Assistant.git
 ```
 2. Navigate into the project folder and set up a virtual environment:
 
 ```bash
-cd lumos
-python -m venv lumos-env
+cd Zion
+python -m venv Zion-env
 ```
 3. Activate the virtual environment:
 
 For Windows:
 
 ```bash
-lumos-env\Scripts\activate
+Zion-env\Scripts\activate
 ```
 
 For macOS/Linux:
 ```bash
-source lumos-env/bin/activate
+source Zion-env/bin/activate
 ```
 
 Install the dependencies:
