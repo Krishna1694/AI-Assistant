@@ -60,7 +60,7 @@ python -m venv Zion-env
 For Windows:
 
 ```bash
-Zion-env\Scripts\activate
+.\Zion-env\Scripts\activate
 ```
 
 For macOS/Linux:
