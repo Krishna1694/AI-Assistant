@@ -4,28 +4,35 @@
 
 ## Current Capabilities
 
-- **Speech-to-Text**: Transcribes audio input into text using OpenAI's Whisper model.
-- **Text-to-Speech**: Converts text responses into speech using pyttsx3.
-- **Noise Reduction**: Applies noise reduction to recorded audio for clearer voice input.
-- **Basic Commands**: Handles a set of voice commands, including telling the time, opening websites, and exiting the program.
-- **Continuous Listening**: Continuously listens for commands, enabling hands-free interaction.
+- **Speech-to-Text**: Uses Google Speech Recognition for transcribing voice input.
+- **Text-to-Speech**: Converts responses into spoken words using `pyttsx3`.
+- **Noise Reduction**:  Automatically reduces background noise during audio capture.
+- **Time & Date Commands**: Responds with the current time or date when asked.
+- **Web Commands**: Opens websites like Google and YouTube, and performs searches via voice.
+- **Continuous Listening**: Listens for voice commands in a loop until instructed otherwise.
+- **Sleep Mode**: Enters a low-resource sleep state, wakes up on key press.
 
 ## Present Features
 
-- **Time & Date Commands**:
+- **Time & Date**
   - "What is the time?"
   - "What is today's date?"
 
-- **Website Opening**:
+- **Website Access**
   - "Open Google"
   - "Open YouTube"
 
-- **Exit Command**:
+- **Search Function after website access**
+  - "Search Google for cats"
+  - "Search YouTube for lo-fi music"
+
+- **Exit Commands**
   - "Exit"
   - "Stop"
   - "Shutdown"
 
-- **Noise Reduction**: Automatically reduces background noise during recording to improve speech recognition accuracy.
+- =**Noise Reduction**
+  - Automatically filters background noise during listening for better recognition.
 
 ## Requirements
 
@@ -84,7 +91,9 @@ python Zion.py
 
 - "What is the time?"
 
-- "Open YouTube"
+- "Open google" then follow with "search for {any query}"
+
+- "Go to sleep"
 
 - "Stop"
 
