@@ -76,7 +76,7 @@ pip install -r requirements.txt
 Run the application:
 
 ```bash
-python jarvis.py
+python Zion.py
 ```
 
 
