@@ -1,5 +1,5 @@
 # Ignore virtual environments
-jarvis-env/
+Zion-env/
 
 # Ignore temporary files
 *.wav
@@ -13,3 +13,5 @@ models/
 # Ignore tests and personal data
 test.py
 notes.txt
+assets
+references

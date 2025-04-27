@@ -6,6 +6,7 @@
 
 - **Speech-to-Text**: Uses Google Speech Recognition for transcribing voice input.
 - **Text-to-Speech**: Converts responses into spoken words using `pyttsx3`.
+- **Intelligent Responses**: Zion queries OpenHermes-based local model for a natural, intelligent reply.
 - **Noise Reduction**:  Automatically reduces background noise during audio capture.
 - **Time & Date Commands**: Responds with the current time or date when asked.
 - **Web Commands**: Opens websites like Google and YouTube, and performs searches via voice.
@@ -31,6 +32,9 @@
   - "Stop"
   - "Shutdown"
 
+- **Intelligent Chit-Chat**
+  - "Ask any general question when no specific command is recognized."
+
 - =**Noise Reduction**
   - Automatically filters background noise during listening for better recognition.
 
@@ -38,16 +42,7 @@
 
 - Python 3.8 or higher
 - Virtual environment (recommended)
-
-### Install the dependencies:
-To install the necessary dependencies, you can use the `requirements.txt` file.
-
-```bash
-pip install -r requirements.txt 
-```
-## License
-
-This project is licensed under the **Non-Commercial Use License**, which means it can be viewed and modified but not used for commercial purposes without permission.
+- Ollama installed locally to run the OpenHermes model
 
 ## How to Use
 
@@ -75,15 +70,29 @@ For macOS/Linux:
 source Zion-env/bin/activate
 ```
 
-Install the dependencies:
+### Install the dependencies:
+
+To install the necessary dependencies, you can use the requirements.txt file.
 
 ```bash
 pip install -r requirements.txt
 ```
-Run the application:
+### Run the application:
+
+You have two ways to run Zion depending on your needs:
+
+### Default Mode (with LLM support)
+Uses OpenHermes via Ollama for intelligent conversations:
 
 ```bash
-python Zion.py
+python Zion_AI.py
+```
+
+### Basic Mode (Predefined Commands Only)
+Only basic, predefined commands are supported (no LLM needed):
+
+```bash
+python Zion_pre_defined.py
 ```
 
 
@@ -97,8 +106,17 @@ python Zion.py
 
 - "Stop"
 
+Zion will also answer general questions intelligently by utilizing the local OpenHermes model on Zion_AI.py.
+
 ## Acknowledgments
 This project was made possible with the help of ChatGPT, which provided guidance in coding, troubleshooting, and implementing features. Special thanks to OpenAI for making ChatGPT available!
 
-## Contributing
-Feel free to fork this project and submit pull requests if you'd like to contribute. Ensure that you follow the Non-Commercial Use License for any modifications.
+## License
+This project is licensed for Personal and Educational Use Only.
+
+- You may use Zion for your own learning, growth, and non-commercial purposes.
+- You may not modify, redistribute, or sell this project or its derivatives without explicit permission from the author.
+
+For commercial use, modification, or redistribution, please contact the project owner.
+
+> "Zion" is always improving. Stay tuned for vision support, offline memory, and much more in future updates!
