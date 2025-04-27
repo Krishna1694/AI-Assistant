@@ -81,14 +81,14 @@ pip install -r requirements.txt
 
 You have two ways to run Zion depending on your needs:
 
-### Default Mode (with LLM support)
+#### Default Mode (with LLM support)
 Uses OpenHermes via Ollama for intelligent conversations:
 
 ```bash
 python Zion_AI.py
 ```
 
-### Basic Mode (Predefined Commands Only)
+#### Basic Mode (Predefined Commands Only)
 Only basic, predefined commands are supported (no LLM needed):
 
 ```bash
