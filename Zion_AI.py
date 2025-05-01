@@ -135,6 +135,7 @@ def handle_command(command):
     elif "open youtube" in command:
         web_commands("youtube")
     elif "sleep" in command:
+        speak("Entering sleep mode")
         enter_sleep_mode()
     elif "exit" in command or "stop" in command or "shutdown" in command:
         speak("Shutting down. Goodbye sir!")
