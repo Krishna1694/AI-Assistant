@@ -5,6 +5,7 @@
 ## Current Capabilities
 
 - **Speech-to-Text**: Uses Google Speech Recognition for transcribing voice input.
+- **Hotword Detection**: Uses porcupine free version for detecting Hotword "Jarvis".
 - **Text-to-Speech**: Converts responses into spoken words using `pyttsx3`.
 - **Intelligent Responses**: Zion queries OpenHermes-based local model for a natural, intelligent reply.
 - **Noise Reduction**:  Automatically reduces background noise during audio capture.
@@ -32,10 +33,13 @@
   - "Stop"
   - "Shutdown"
 
-- **Intelligent Chit-Chat**
-  - "Ask any general question when no specific command is recognized."
+- **Hotword Detection**
+  - When the hotword "Jarvis" is detected, it wakes up and starts listening for commands.
 
-- =**Noise Reduction**
+- **Intelligent Chit-Chat**
+  - Ask any general question when no specific command is recognized.
+
+- **Noise Reduction**
   - Automatically filters background noise during listening for better recognition.
 
 ## Requirements
@@ -77,6 +81,8 @@ To install the necessary dependencies, you can use the requirements.txt file.
 ```bash
 pip install -r requirements.txt
 ```
+**Note**: requirements.txt contain all necessary yet also some unnecessary listings, will update SOON.
+
 ### Run the application:
 
 You have two ways to run Zion depending on your needs:
@@ -96,17 +102,27 @@ python Zion_pre_defined.py
 ```
 
 
-**You can start giving voice commands, such as:**
+**You can start interacting with Zion**
 
-- "What is the time?"
+- Start by saying the hotword "Jarvis"
 
-- "Open google" then follow with "search for {any query}"
+- Once detected, Zion will:
 
-- "Go to sleep"
+  1. Play a chime sound to signal it's ready for your voice command.
 
-- "Stop"
+  2. Listen to your command. Following are some examples
+
+    - "What is the time?"
+
+    - "Open google" then follow with "search for {any query}"
+
+    - "Go to sleep"
+
+    - "Stop"
 
 Zion will also answer general questions intelligently by utilizing the local OpenHermes model on Zion_AI.py.
+
+**Note**: Hotword detection is only enables for Zion_AI.py not for Zion_pre_defined.
 
 ## Acknowledgments
 This project was made possible with the help of ChatGPT, which provided guidance in coding, troubleshooting, and implementing features. Special thanks to OpenAI for making ChatGPT available!

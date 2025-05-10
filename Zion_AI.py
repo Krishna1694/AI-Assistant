@@ -5,6 +5,10 @@ import webbrowser
 import whisper
 import numpy as np
 import sounddevice as sd
+import pvporcupine
+import pyaudio
+import struct
+from playsound import playsound
 
 # Initialize speech engines
 engine = pyttsx3.init()
@@ -27,6 +31,52 @@ def greet():
         speak("Good Evening sir")
     speak("How can I help you?")
 
+# Hotword detection class (Full pack)
+class HotwordDetector:
+    def __init__(self, keyword="jarvis"):
+        self.porcupine = pvporcupine.create(keywords=[keyword])
+        self.audio_interface = pyaudio.PyAudio()
+        self.audio_stream = self.audio_interface.open(
+            rate=self.porcupine.sample_rate,
+            channels=1,
+            format=pyaudio.paInt16,
+            input=True,
+            frames_per_buffer=self.porcupine.frame_length
+        )
+
+    def listen(self):
+        print("🎤 Listening for hotword...")
+        try:
+            while True:
+                audio_data = self.audio_stream.read(self.porcupine.frame_length, exception_on_overflow=False)
+                audio_data = struct.unpack_from("h" * self.porcupine.frame_length, audio_data)
+                result = self.porcupine.process(audio_data)
+
+                if result >= 0:
+                    print("✅ Hotword detected!")
+                    play_chime()
+                    on_use()
+
+        except KeyboardInterrupt:
+            print("\n🛑 Stopped by user.")
+        finally:
+            self.cleanup()
+
+    def cleanup(self):
+        if self.audio_stream:
+            self.audio_stream.close()
+        if self.audio_interface:
+            self.audio_interface.terminate()
+        if self.porcupine:
+            self.porcupine.delete()
+
+# Play chime sound
+def play_chime():
+    try:
+        playsound('assets/loading-chime.wav')
+    except Exception as e:
+        print(f"⚠️ Error playing chime: {e}")
+
 # Listen for voice input
 def listen(timeout=5):
     print("🎙️ Listening...")
@@ -46,6 +96,7 @@ def listen(timeout=5):
         
         if text:
             print(f"🧑 You: {text}")
+            play_chime()
             return text.lower()
         else:
             speak("Didn't catch anything.")
@@ -147,12 +198,13 @@ def handle_command(command):
 
 # Main loop for continuous listening
 def on_use():
-    while True:
-        command = listen()
-        if command:
-            handle_command(command)
+    command = listen()
+    if command:
+        handle_command(command)
 
 # Starting point
 if __name__ == "__main__":
     greet()
-    on_use()
+#    on_use()
+    detector = HotwordDetector(keyword="jarvis")
+    detector.listen()
