@@ -2,7 +2,6 @@
 Zion-env/
 
 # Ignore temporary files
-*.wav
 *.tmp
 __pycache__/
 *.pyc
