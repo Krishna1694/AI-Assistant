@@ -8,11 +8,13 @@ import sounddevice as sd
 import pvporcupine
 import pyaudio
 import struct
-from playsound import playsound
+import pygame
+import time
 
 # Initialize speech engines
 engine = pyttsx3.init()
 whisper_model = whisper.load_model("small")  
+pygame.mixer.init()
 
 # Function to speak
 def speak(text):
@@ -46,8 +48,12 @@ class HotwordDetector:
 
     def listen(self):
         try:
-            print("🎤 Listening for hotword...")
+            
+            lfh_prompt = False
             while True:
+                if not lfh_prompt:
+                    print("🎤 Listening for hotword...")
+                    lfh_prompt = True
                 audio_data = self.audio_stream.read(self.porcupine.frame_length, exception_on_overflow=False)
                 audio_data = struct.unpack_from("h" * self.porcupine.frame_length, audio_data)
                 result = self.porcupine.process(audio_data)
@@ -56,6 +62,7 @@ class HotwordDetector:
                     print("✅ Hotword detected!")
                     play_chime()
                     on_use()
+                    lfh_prompt = False
 
         except KeyboardInterrupt:
             print("\n🛑 Stopped by user.")
@@ -73,7 +80,10 @@ class HotwordDetector:
 # Play chime sound
 def play_chime():
     try:
-        playsound('assets/loading-chime.wav')
+        # Load and play the sound
+        pygame.mixer.music.load('assets/loading-chime.wav')
+        pygame.mixer.music.play()
+        time.sleep(0.5)
     except Exception as e:
         print(f"⚠️ Error playing chime: {e}")
 
@@ -96,7 +106,7 @@ def listen(timeout=5):
         
         if text:
             print(f"🧑 You: {text}")
-            # play_chime() (Not working, need to change)
+            play_chime() 
             return text.lower()
         else:
             speak("Didn't catch anything.")
