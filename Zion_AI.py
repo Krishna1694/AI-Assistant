@@ -46,8 +46,8 @@ class HotwordDetector:
 
     def listen(self):
         try:
+            print("🎤 Listening for hotword...")
             while True:
-                print("🎤 Listening for hotword...")
                 audio_data = self.audio_stream.read(self.porcupine.frame_length, exception_on_overflow=False)
                 audio_data = struct.unpack_from("h" * self.porcupine.frame_length, audio_data)
                 result = self.porcupine.process(audio_data)
