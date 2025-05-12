@@ -60,7 +60,7 @@ class HotwordDetector:
 
                 if result >= 0:
                     print("✅ Hotword detected!")
-                    play_chime()
+                    play_chime(1)
                     on_use()
                     lfh_prompt = False
 
@@ -78,12 +78,19 @@ class HotwordDetector:
             self.porcupine.delete()
 
 # Play chime sound
-def play_chime():
+def play_chime(type):
     try:
         # Load and play the sound
-        pygame.mixer.music.load('assets/loading-chime.wav')
-        pygame.mixer.music.play()
-        time.sleep(0.5)
+        if type == 1:
+            pygame.mixer.music.load('assets/loading-chime.wav')
+            pygame.mixer.music.play()
+            time.sleep(0.5)
+        elif type == 2:
+            pygame.mixer.music.load('assets/loading-chime_rev.wav')
+            pygame.mixer.music.play()
+            time.sleep(0.5)
+        else:
+            print("Invalid chimes option")
     except Exception as e:
         print(f"⚠️ Error playing chime: {e}")
 
@@ -106,7 +113,7 @@ def listen(timeout=5):
         
         if text:
             print(f"🧑 You: {text}")
-            play_chime() 
+            play_chime(2) 
             return text.lower()
         else:
             speak("Didn't catch anything.")
@@ -215,6 +222,5 @@ def on_use():
 # Starting point
 if __name__ == "__main__":
     greet()
-#    on_use()
     detector = HotwordDetector(keyword="jarvis")
     detector.listen()
