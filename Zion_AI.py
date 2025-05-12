@@ -29,7 +29,7 @@ def greet():
         speak("Good Afternoon sir")
     else:
         speak("Good Evening sir")
-    speak("How can I help you?")
+    speak("I'm up and ready to work")
 
 # Hotword detection class (Full pack)
 class HotwordDetector:
@@ -45,9 +45,9 @@ class HotwordDetector:
         )
 
     def listen(self):
-        print("🎤 Listening for hotword...")
         try:
             while True:
+                print("🎤 Listening for hotword...")
                 audio_data = self.audio_stream.read(self.porcupine.frame_length, exception_on_overflow=False)
                 audio_data = struct.unpack_from("h" * self.porcupine.frame_length, audio_data)
                 result = self.porcupine.process(audio_data)
@@ -96,7 +96,7 @@ def listen(timeout=5):
         
         if text:
             print(f"🧑 You: {text}")
-            play_chime()
+            # play_chime() (Not working, need to change)
             return text.lower()
         else:
             speak("Didn't catch anything.")
@@ -106,14 +106,14 @@ def listen(timeout=5):
         speak(f"Error during listening: {e}")
         return ""
 
-# Sleep mode and entering sleep mode
+# Sleep mode and entering sleep mode (not currently operational, need editing listen)
 def sleep_mode():
-    speak("Shall I enter sleep mode sir?")
+    speak("Are you still there sir?")
     response = listen()
-    if "yes" in response:
+    if "no" in response:
         enter_sleep_mode()
         return ""
-    elif "no" in response:
+    elif "yes" in response:
         speak("Okay, I'm still here sir.")
         return listen()
     else:
@@ -125,7 +125,7 @@ def sleep_mode():
 def enter_sleep_mode():
     input("Press enter to wake me up sir!")
     speak("I'm up sir")
-    on_use()
+    return ""
 
 # Handle websites like Google and YouTube
 def web_commands(site):
