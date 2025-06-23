@@ -91,7 +91,7 @@ You have two ways to run Zion depending on your needs:
 Uses OpenHermes via Ollama for intelligent conversations:
 
 ```bash
-python Zion_AI.py
+python hotword.py
 ```
 
 #### Basic Mode (Predefined Commands Only)
