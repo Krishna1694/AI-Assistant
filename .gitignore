@@ -1,5 +1,6 @@
 # Ignore virtual environments
 Zion-env/
+Zion-gpu-env/
 
 # Ignore temporary files
 *.tmp

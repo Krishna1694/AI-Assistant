@@ -96,6 +96,7 @@ python hotword.py
 
 #### Basic Mode (Predefined Commands Only)
 Only basic, predefined commands are supported (no LLM needed):
+**Note**: Ollama with openhermers setup is required.
 
 ```bash
 python Zion_pre_defined.py

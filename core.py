@@ -1,26 +1,40 @@
-import requests
+import ollama
+import re
 import datetime
 from audio import listen
-from utils import play_chime
 from speech import speak
-from config import OPENHERMES_API_URL
-from web_commands import web_commands, open_homepage
+from web_commands import web_commands
 
 # Function to query OpenHermes for intelligent responses
-def query_openhermes(prompt):
-    
-    response = requests.post(
-        OPENHERMES_API_URL,
-        json={
-            "model": "openhermes",
-            "prompt": prompt,
-            "stream": False
-        }
-    )
-    
-    response_text = response.json().get("response", "")
-    
-    return response_text
+def query_ollama_stream(prompt):
+    buffer = ""
+
+    try:
+        for chunk in ollama.chat(
+            model="openhermes",
+            messages=[{"role": "user", "content": prompt}],
+            stream=True
+        ):
+            content = chunk.get("message", {}).get("content", "")
+            if content:
+                print(content, end="", flush=True)
+                buffer += content
+
+                # Detect complete sentence/clause
+                sentences = re.split(r'(?<=[.?!;])\s+', buffer)
+                for sent in sentences[:-1]:
+                    if sent.strip():
+                        speak(sent.strip())
+                buffer = sentences[-1]  # keep last unfinished part
+
+        # Speak any remaining content
+        if buffer.strip():
+            speak(buffer.strip())
+
+    except KeyboardInterrupt:
+        print("\n[Interrupted]")
+        if buffer.strip():
+            speak(buffer.strip())
 
 # Handle basic commands like time, date, and shutdown
 def handle_command(command):
@@ -42,8 +56,8 @@ def handle_command(command):
         exit()
     else:
         # If no specific command, query OpenHermes for a general response
-        response = query_openhermes(command)
-        speak(response)
+        query_ollama_stream(command)
+
 
 # Sleep mode and entering sleep mode (not currently operational, need editing listen)
 def sleep_mode():
